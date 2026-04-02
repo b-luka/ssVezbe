@@ -1,27 +1,3 @@
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-void service(char* param, long param_length) {
-    long stack_var_1 = 0x123;
-    char buffer[16];
-    long stack_var_2 = 0x456;
-
-    printf("stack var 1: %lx\n", stack_var_1);
-    printf("stack var 2: %lx\n", stack_var_2);
-
-    memcpy(buffer, param, param_length);
-
-    printf("stack var 1: %lx\n", stack_var_1);
-    printf("stack var 2: %lx\n", stack_var_2);
-}
-
-void worm_foo() {
-    printf("---------------worm--------------");
-    exit(0);
-}
-*/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
