@@ -12,35 +12,40 @@ typedef struct
 } StructType;		// size: 32, alignment: 8
 
 typedef struct {
-    int x1; // 4
-    char x2; // 1
-} StructType2;  // size: 5, align: 4; 5 -> 8
+    int x1; // 4B
+    char x2; // 1B
+} StructType2;  // size: 5B, align: 4B; 5B -> 4B + 1B + 3B(padding)
 
 typedef struct {
-    long x1;    // 8
-    char x2;    // 1
-    long x3;    // 8
-} StructType3;  // 24
+    long x1;    // 8B
+    char x2;    // 1B
+    long x3;    // 8B
+} StructType3;  // 24B
+
+typedef struct {
+    int x1;    // 4B
+    char x2;    // 1B
+    long x3;    // 8B
+} StructType4;  // 16B
 
 
 typedef struct {
-    int x1;    // 4
-    char x2;    // 1
-    long x3;    // 8
-} StructType4;  // 16
-
-
-typedef struct {
-    int x1;    // 4
-    int x2;    // 4
-    char x3;    // 1
-} StructType5;  // 12
+    int x1;    // 4B
+    int x2;    // 4B
+    char x3;    // 1B
+} StructType5;  // 12B
 
 typedef struct {
-    int x1;    // 4
-    int x2;    // 4
-    char x3[5];    // 1
-} StructType6;  // 12
+    int x1;    // 4B
+    char x2;    // 1B
+    int x3;    // 4B
+} StructType6;  // 12B
+
+typedef struct {
+    int x1;    // 4B
+    int x2;    // 4B
+    char x3[5];    // 5B 
+} StructType7;  // 16B
 
 
 /*
@@ -125,10 +130,11 @@ int main()
 
 
     StructType2 test = {4, 'a'};
-    printf("sizeof(StructType2) = %ld\n", sizeof(StructType2));
-    printf("sizeof(StructType3) = %ld\n", sizeof(StructType3));
-	printf("sizeof(StructType4) = %ld\n", sizeof(StructType4));
-	printf("sizeof(StructType5) = %ld\n", sizeof(StructType5));
-    printf("sizeof(StructType6) = %ld\n", sizeof(StructType6));
+    printf("sizeof(StructType2(int, char)) = %ld\n", sizeof(StructType2));
+    printf("sizeof(StructType3(long, char, long)) = %ld\n", sizeof(StructType3));
+	printf("sizeof(StructType4(int, char, long)) = %ld\n", sizeof(StructType4));
+	printf("sizeof(StructType5(int, int, char)) = %ld\n", sizeof(StructType5));
+    printf("sizeof(StructType6(int, char, int)) = %ld\n", sizeof(StructType6));
+	printf("sizeof(StructType7(int, int, char[5])) = %ld\n", sizeof(StructType7));
     return 0;
 }
