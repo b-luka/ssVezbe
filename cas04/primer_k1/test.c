@@ -31,3 +31,29 @@ int foo(StructType1 arg1) {
 // nije 18B (kad se prevede dobije se 88 umesto 72)
 
 // ako promenimo argumente za bar na short ili char dobice se isti asm kod
+
+
+// teorija
+/*
+1. pitanje (stek i poziv funckije)
+stack frame iz dokumentacije
+crvena zona se ne koristi za lokalne promenljive, ne postoji implicitna alokacija steka
+odgovor je ne
+
+2. pitanje (prosledjivanje parametara)
+StructType pripada klasi MEMORY - vise od 16B i nije SSE
+pozivalac alocira prostor za povratnu vrednost foo
+parametri
+char param0 - rsi (rdi zauzet)
+double param1 - sse reg, xmm0
+StructType param2 - stack push 2
+void* param3 - rdx
+StructType param4 - stack push 1
+float param5 - xmm1
+long param6 - rcx
+
+(symbols)
+niz intova se drugacije ponasa od pokazivaca na int
+int c[], int *b;
+c i &c imaju istu vrednost - adresu prvog elementa (array to pointer decay)
+*/
